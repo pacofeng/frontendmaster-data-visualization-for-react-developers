@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { Data } from "./visualization/Data";
+import BarChart from "./visualization/BarChart";
+import LineChart from "./visualization/LineChart";
+import RadialChart from "./visualization/RadialChart";
+import RadialChartCanvas from "./visualization/RadialChartCanvas";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    data: [],
+    range: []
+  }
+
+  componentDidMount() {
+    // mock API call
+    setTimeout(() => {
+      this.setState(() => ({
+        data: Data
+      }));
+    }, 1000);
+  }
+
+  updateRange = (range) => {
+    this.setState(() => ({ range }))
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <BarChart data={this.state.data} range={this.state.range} updateRange={this.updateRange}/>
+        <br />
+        <LineChart data={this.state.data} />
+        <br />
+        <RadialChart data={this.state.data} />
+        <br />
+        <RadialChartCanvas data={this.state.data} />
+      </div>
+    )
+  } 
 }
 
 export default App;
