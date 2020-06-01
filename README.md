@@ -34,7 +34,7 @@
 
 
 ## SVG ELEMENTS
-![Test Image 1]()
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/53FD15B9-7FF2-4942-BC8F-FE60CE4C1A5B.png)
 
 
 ## SVG COORDINATE SYSTEM
