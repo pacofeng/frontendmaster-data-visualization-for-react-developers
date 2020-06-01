@@ -205,6 +205,7 @@ var radialChartData = {
 3. Place d3 code in 
     * componentDidMount and/or
     * componentDidUpdate 
+    
 **Never ever let D3 and React manage same parts of the DOM! OR BUGS!!
 
 ## AXES
@@ -228,7 +229,8 @@ d3.select(this.requestAnimationFrame.group)
 2. Bind data 
 3. Call transition 
 4. Set the attributes to transition 
-Make sure React doesn't manage the attributes D3 is transitioning! It works, it's performant, but the code is ugly.  I don't highly recommend it.
+
+**Make sure React doesn't manage the attributes D3 is transitioning! It works, it's performant, but the code is ugly.  I don't highly recommend it.
 ```
 // in componentDidUpdate
 d3.select(this.refs.bars)
