@@ -27,13 +27,14 @@
 
 * Chloropleth
 ![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.19.44%20AM.png)
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.26.01%20AM.png)
 
 * Pie chart
 ![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.19.59%20AM.png)
 
 
 ## SVG ELEMENTS
-![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.26.01%20AM.png)
+![Test Image 1]()
 
 
 ## SVG COORDINATE SYSTEM
