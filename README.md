@@ -1,68 +1,274 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## DATA TYPES 
+* Categorical (genres) 
+* Ordinal (t-shirt sizes) 
+* Quantitative (temperatures) 
+* Temporal (dates) 
+* Spatial (cities)
 
-## Available Scripts
 
-In the project directory, you can run:
+## BASIC CHARTS
+* Bar chart
+![Test Image 1]()
 
-### `yarn start`
+* Histogram 
+![Test Image 1]()
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Scatterplot 
+![Test Image 1]()
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* Line chart 
+![Test Image 1]()
 
-### `yarn test`
+* Tree
+![Test Image 1]()
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Node-link
+![Test Image 1]()
 
-### `yarn build`
+* Chloropleth
+![Test Image 1]()
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Pie chart
+![Test Image 1]()
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## SVG ELEMENTS
+![Test Image 1]()
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## SVG COORDINATE SYSTEM
+* x = 25, y = 50
+![Test Image 1]()
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## BAR CHART
+* scale: mapping from data attributes (domain) to display (range)
+```
+d3.scaleLinear()
+    .domain([min, max]) // input
+    .range([min, max]); // output
+```
+* 使用场景
+    * Quantitative    
+        * Continuous domain和Continuous range:    
+            * scaleLinear 
+            * scaleLog 
+            * scaleTime 
+        * Continuous domain和Discrete range    
+            * scaleQuantize 
+            * Categorical    
+        * Discrete domain和Discrete range    
+            * scaleOrdinal 
+        * Discrete domain和Continuous range    
+            * scaleBand
+* d3-scale: https://github.com/d3/d3-scale
+* Create a bar chart with D3 scales: https://observablehq.com/@sxywu/data-visualization-for-react-developers-full
+```
+var data = [{"date":"2017-01-01T08:00:00.000Z","high":54,"avg":50,"low":46}];
+var width = 650;
+var height = 400;
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+var barChartData = {
+    // map date to x position
+    // get min and max of date
+    const xExtent = d3.extent(data, d => d.date);
+    const xScale = d3.scaleTime()
+        .domain(xExtent)
+        .range([0, width]);
 
-### Analyzing the Bundle Size
+    // map date to y position
+    // get min and max of high temp
+    const [min, max] = d3.extent(data, d => d.high);
+    const yScale = d3.scaleLinear()
+        .domain([Math.min(min, 0), max])
+        .range([height, 0]);
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+    // map avg temp to color
+    // get min and max of avg temp
+    const colorExtent = d3.extent(data, d => d.avg).reverse();
+    const colorScale = d3.scaleSequential()
+        .domain(colorExtent)
+        .interpolator(d3.interpolateRdYlBu);
 
-### Making a Progressive Web App
+    return data.map(d => {
+        return {
+            x: xScale(d.date),
+            y: yScale(d.high),
+            height: yScale(d.low) - yScale(d.high),
+            fill: colorScale(d.avg)
+        }
+    });
+};
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## LINE CHART
+* d3.line()
+d3.line()
+    .x(fn)
+    .y(fn);
+* d3-shape
+* Create a line chart with D3 line: https://observablehq.com/@sxywu/data-visualization-for-react-developers-full
+```
+var data = [{"date":"2017-01-01T08:00:00.000Z","high":54,"avg":50,"low":46}];
+var width = 650;
+var height = 400;
 
-### Advanced Configuration
+var lineChartData = {
+    const xExtent = d3.extent(data, d => d.date);
+    const xScale = d3.scaleTime()
+        .domain(xExtent)
+        .range([0, width]);
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+    // min: low temp, max: high temp
+    const highMax = d3.max(data, d => d.high);
+    const lowMin = d3.min(data, d => d.low);
+    const yScale = d3.scaleLinear()
+        .domain([lowMin, highMax])
+        .range([height, 0]);
 
-### Deployment
+    const highLine = d3.line()
+        .x(d => xScale(d.date))
+        .y(d => yScale(d.high));
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+    const lowLine = d3.line()
+        .x(d => xScale(d.date))
+        .y(d => yScale(d.low));
 
-### `yarn build` fails to minify
+    return [
+        { path: highLine(data), fill: 'red' },
+        { path: lowLine(data), fill: 'blue' }
+    ]
+};
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## RADIAL CHART
+* d3.arc()
+* Create a line chart with D3 arc: https://observablehq.com/@sxywu/data-visualization-for-react-developers-full
+```
+var data = [{"date":"2017-01-01T08:00:00.000Z","high":54,"avg":50,"low":46}];
+var width = 650;
+var height = 400;
+
+var radialChartData = {
+    const radiusScale = d3.scaleLinear()
+        .domain([
+            d3.min(data, d => d.low),
+            d3.max(data, d => d.high)
+        ]).range([0, width / 2]);
+
+    const colorScale = d3.scaleSequential()
+        .domain(d3.extent(data, d => d.avg).reverse())
+        .interpolator(d3.interpolateRdYlBu);
+
+    // get the angle for each slice
+    // 2PI / 365
+    const perSliceAngle = (2 * Math.PI) / data.length;
+    const artGenerator = d3.arc();
+
+    return data.map((d, i) => {
+        const path = artGenerator({
+            startAngle: i * perSliceAngle,
+            endAngle: (i + 1) * perSliceAngle,
+            innerRadius: radiusScale(d.low),
+            outerRadius: radiusScale(d.high)
+        });
+        return { path, fill: colorScale(d.avg) }
+    });
+};
+```
+
+## REACT RENDERS - Architecture
+* Division of responsibilities:
+    * Chart component 
+        * Gets passed in raw data as prop 
+        * Translates raw data to screen space 
+        * Renders the calculated data 
+        * Manages state for interactions that don’t require redrawing of the chart (hover, click) 
+    * Root component 
+        * Manages updates to raw data 
+        * Manages state for interactions that require redrawing of charts (filter, aggregate, sort, etc.)
+* Where to calculate data: 
+    * getDerivedStateFromProps 
+        * Pro: simple and straightforward 
+        * Con: asynchronous, race conditions if not careful 
+    * render 
+        * Pro: very straightforward 
+        * Con: will recalculate on every lifecycle 
+    * componentDidMount & componentDidUpdate 
+        * Pro: no race condition 
+        * Con: less straightforward
+
+## d3 RENDERS
+1. Instantiate d3 function in componentDidMount 
+2. Create <g /> container in render 
+3. Place d3 code in 
+    * componentDidMount and/or
+    * componentDidUpdate 
+**Never ever let D3 and React manage same parts of the DOM! OR BUGS!!
+
+## AXES
+* Create axisLeft or axisBottom at beginning of React lifecycle and set corresponding scale
+```
+const yAxis = d3.axisLeft()
+    .scale(yScale);
+```
+* Create an SVG group element in render
+```
+<g ref="group" />
+```
+* Call axis on the group element in componentDidUpdate
+```
+d3.select(this.requestAnimationFrame.group)
+    .call(yAxis);
+```
+
+## TRANSITIONS
+1. Select elements to transition 
+2. Bind data 
+3. Call transition 
+4. Set the attributes to transition 
+Make sure React doesn't manage the attributes D3 is transitioning! It works, it's performant, but the code is ugly.  I don't highly recommend it.
+```
+// in componentDidUpdate
+d3.select(this.refs.bars)
+    .selectAll('rect')
+    .data(this.state.bars)
+    .transition()
+    .attr('y', d => d.y)
+    .attr('height', d => d.height)
+    .attr('fill', d => d.fill);
+
+// in render
+<g ref='bars'>
+    {this.state.bars.map((d, i) => (<rect key={i} x={d.x} width='2' />))}
+</g>
+```
+
+## BRUSH
+1. Create brush instance 
+2. Define brushable area (extent) 
+3. Pass in a function to execute on every brush, or brush end
+```
+// in componentDidMount
+this.brush = d3.brush()
+    .extent([[0, 0], [width ,height]]) // [[top left], [right bottom]]
+    .on('end', () => ...);
+
+d3.select(this.refs.brush)
+    .call(this.brush);
+
+// in render
+<g ref='brush' />
+```
+
+
+
+
+
+
+
