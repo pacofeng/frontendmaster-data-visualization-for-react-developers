@@ -8,42 +8,37 @@
 
 ## BASIC CHARTS
 * Bar chart
-![Test Image 1]()
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.18.51%20AM.png)
 
 * Histogram 
-![Test Image 1]()
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.19.14%20AM.png)
 
 * Scatterplot 
-![Test Image 1]()
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.19.21%20AM.png)
 
 * Line chart 
-![Test Image 1]()
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.19.26%20AM.png)
 
 * Tree
-![Test Image 1]()
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.19.32%20AM.png)
 
 * Node-link
-![Test Image 1]()
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.19.39%20AM.png)
 
 * Chloropleth
-![Test Image 1]()
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.19.44%20AM.png)
 
 * Pie chart
-![Test Image 1]()
-
-
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.19.59%20AM.png)
 
 
 ## SVG ELEMENTS
-![Test Image 1]()
-
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.26.01%20AM.png)
 
 
 ## SVG COORDINATE SYSTEM
 * x = 25, y = 50
-![Test Image 1]()
-
-
+![Test Image 1](https://github.com/pacofeng/frontendmaster-data-visualization-for-react-developers/blob/master/img/Screen%20Shot%202020-05-31%20at%202.35.45%20AM.png)
 
 
 ## BAR CHART
